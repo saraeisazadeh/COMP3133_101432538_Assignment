@@ -1,12 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [CommonModule,RouterModule],
 })
 export class AppComponent {
-  title = '101432538_comp3133_assignment2';
+  constructor(private router: Router) {}
+
+  logout() {
+    localStorage.removeItem('auth_token'); // or sessionStorage
+    alert('Logged out!');
+    this.router.navigate(['/login']);
+  }
 }

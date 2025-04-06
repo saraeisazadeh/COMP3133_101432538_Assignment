@@ -1,14 +1,24 @@
-import { mergeApplicationConfig, ApplicationConfig } from '@angular/core';
-import { provideServerRendering } from '@angular/platform-server';
-import { provideServerRouting } from '@angular/ssr';
-import { appConfig } from './app.config';
-import { serverRoutes } from './app.routes.server';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { routes } from './app.routes';
 
-const serverConfig: ApplicationConfig = {
+import { provideApollo } from 'apollo-angular';
+import { InMemoryCache } from '@apollo/client/core';
+import { HttpLink } from 'apollo-angular/http';
+import { inject } from '@angular/core';
+
+export const config = {
   providers: [
-    provideServerRendering(),
-    provideServerRouting(serverRoutes)
-  ]
+    provideRouter(routes),
+    provideHttpClient(withFetch()),
+    provideAnimations(),
+    provideApollo(() => {
+      const httpLink = inject(HttpLink);
+      return {
+        cache: new InMemoryCache(),
+        link: httpLink.create({ uri: 'http://localhost:4000/graphql' }),
+      };
+    }),
+  ],
 };
-
-export const config = mergeApplicationConfig(appConfig, serverConfig);

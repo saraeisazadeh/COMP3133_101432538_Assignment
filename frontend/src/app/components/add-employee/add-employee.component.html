@@ -1,0 +1,56 @@
+<h2 class="mb-4 fw-bold border-bottom pb-2">Add New Employee</h2>
+
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="row g-4">
+
+  <div class="col-md-6">
+    <label for="firstName" class="form-label fw-semibold">First Name</label>
+    <input id="firstName" type="text" class="form-control" formControlName="first_name" placeholder="Enter first name" />
+  </div>
+
+  <div class="col-md-6">
+    <label for="lastName" class="form-label fw-semibold">Last Name</label>
+    <input id="lastName" type="text" class="form-control" formControlName="last_name" placeholder="Enter last name" />
+  </div>
+
+  <div class="col-md-6">
+    <label for="email" class="form-label fw-semibold">Email</label>
+    <input id="email" type="email" class="form-control" formControlName="email" placeholder="Enter email" />
+  </div>
+
+  <div class="col-md-6">
+    <label for="gender" class="form-label fw-semibold">Gender</label>
+    <input id="gender" type="text" class="form-control" formControlName="gender" placeholder="Enter gender" />
+  </div>
+
+  <div class="col-md-6">
+    <label for="designation" class="form-label fw-semibold">Designation</label>
+    <input id="designation" type="text" class="form-control" formControlName="designation" placeholder="Enter designation" />
+  </div>
+
+  <div class="col-md-6">
+    <label for="salary" class="form-label fw-semibold">Salary</label>
+    <input id="salary" type="number" class="form-control" formControlName="salary" placeholder="Enter salary" />
+  </div>
+
+  <div class="col-md-6">
+    <label for="dateOfJoining" class="form-label fw-semibold">Date of Joining</label>
+    <input id="dateOfJoining" type="date" class="form-control" formControlName="date_of_joining" />
+  </div>
+
+  <div class="col-md-6">
+    <label for="department" class="form-label fw-semibold">Department</label>
+    <input id="department" type="text" class="form-control" formControlName="department" placeholder="Enter department" />
+  </div>
+
+  <div class="col-md-12">
+    <label for="photo" class="form-label fw-semibold">Upload Photo</label>
+    <input id="photo" type="file" class="form-control" (change)="onFileChange($event)" />
+  </div>
+
+  <div class="col-12 text-end">
+    <button class="btn btn-success px-5 py-2 fs-6" type="submit" [disabled]="employeeForm.invalid">
+      Add Employee
+    </button>
+  </div>
+
+</form>

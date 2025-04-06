@@ -1,0 +1,52 @@
+<h2 class="mb-4">Employee List</h2>
+
+<!-- Search Form -->
+<form class="row g-3 mb-4">
+  <div class="col-md-5">
+    <label for="dept" class="form-label">Department</label>
+    <input type="text" id="dept" [(ngModel)]="searchDept" name="dept" class="form-control" placeholder="e.g. HR" />
+  </div>
+  <div class="col-md-5">
+    <label for="desig" class="form-label">Designation</label>
+    <input type="text" id="desig" [(ngModel)]="searchDesig" name="desig" class="form-control" placeholder="e.g. Manager" />
+  </div>
+  <div class="col-md-2 d-flex align-items-end">
+    <button (click)="searchEmployees()" class="btn btn-primary w-100">Search</button>
+  </div>
+</form>
+
+<!-- Loader -->
+<div *ngIf="loading" class="text-muted">Loading employees...</div>
+
+<!-- Employee Table -->
+<table *ngIf="!loading && employees.length > 0" class="table table-bordered table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Department</th>
+      <th>Designation</th>
+      <th class="text-center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emp of employees">
+      <td>{{ emp.first_name }}</td>
+      <td>{{ emp.last_name }}</td>
+      <td>{{ emp.email }}</td>
+      <td>{{ emp.department }}</td>
+      <td>{{ emp.designation }}</td>
+      <td class="text-center">
+        <button class="btn btn-success btn-sm me-1" (click)="editEmployee(emp)">Update</button>
+        <button class="btn btn-danger btn-sm me-1" (click)="deleteEmployee(emp._id)">Delete</button>
+        <button class="btn btn-info btn-sm text-white" (click)="viewEmployee(emp)">View</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- No Results -->
+<div *ngIf="!loading && employees.length === 0" class="text-muted">
+  No employees found.
+</div>

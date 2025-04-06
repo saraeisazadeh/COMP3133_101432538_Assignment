@@ -1,0 +1,32 @@
+<h2>Edit Employee</h2>
+
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+  <label for="first_name">First Name:</label>
+  <input id="first_name" formControlName="first_name" placeholder="Enter first name" title="First name">
+
+  <label for="last_name">Last Name:</label>
+  <input id="last_name" formControlName="last_name" placeholder="Enter last name" title="Last name">
+
+  <label for="email">Email:</label>
+  <input id="email" type="email" formControlName="email" placeholder="Enter email" title="Email">
+
+  <label for="gender">Gender:</label>
+  <input id="gender" formControlName="gender" placeholder="Enter gender" title="Gender">
+
+  <label for="designation">Designation:</label>
+  <input id="designation" formControlName="designation" placeholder="Enter designation" title="Designation">
+
+  <label for="salary">Salary:</label>
+  <input id="salary" type="number" formControlName="salary" placeholder="Enter salary" title="Salary">
+
+  <label for="date_of_joining">Date of Joining:</label>
+  <input id="date_of_joining" type="date" formControlName="date_of_joining" placeholder="Select date" title="Date of joining">
+
+  <label for="department">Department:</label>
+  <input id="department" formControlName="department" placeholder="Enter department" title="Department">
+
+  <label for="photo">Upload Photo:</label>
+  <input id="photo" type="file" (change)="onFileChange($event)" title="Employee photo">
+
+  <button type="submit" [disabled]="employeeForm.invalid">Update Employee</button>
+</form>
