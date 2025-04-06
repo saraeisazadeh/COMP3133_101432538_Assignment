@@ -17,7 +17,7 @@ export const appConfig = {
       const httpLink = inject(HttpLink);
       return {
         cache: new InMemoryCache(),
-        link: httpLink.create({ uri: 'http://localhost:4000/graphql' }),
+        link: httpLink.create({ uri: 'https://comp3133-101432538-assignment.onrender.com/graphql' }),
       };
     }),
   ],
